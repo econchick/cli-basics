@@ -23,11 +23,15 @@ Their interface is instead more primitive -- it's simple text -- but also powerf
 ## Running a program
 
 You should by now be looking at this tutorial alongside a shell -- one running on a Linux computer which we've connected through via your browser.
-If you don't see one, follow the link in the README of [this repository](https://github.com/JulianEducation/CommandLineBasics).
+If you don't see one, follow the link in the README of [this repository](https://github.com/roguelynn/cli-basics).
 
 Think about what's happening here -- you have your local computer (a laptop, tablet or similar) which is showing you an interface being exposed by a second computer far away from yours.
 
-Let's run our first program. You should see a *prompt* -- by default this will be a line ending in the `$ ` followed by a cursor, where you're able to type.
+Let's run our first program. You should see a *prompt* -- by default this will be a line ending in the `$ ` followed by a cursor, where you're able to type. For me, the full line I see is:
+
+```sh
+lr3086@cloudshell:~/cloudshell_open/cli-basics$
+```
 
 The shell is waiting for you to give it a command to run, and will show you output that any program you run emits.
 
@@ -37,28 +41,29 @@ A simple first program is:
 date
 ```
 
-Try running it now by typing it into the shell *without* the `$` and then hitting enter to execute it.
-Within Google Cloud Shell you can also use the "Copy to Cloud Shell" button.
+Try running it now by typing it into the shell (*without* the `$`) and then hitting enter to execute it. Within Google Cloud Shell you can also use the "Copy to Cloud Shell" button (the icon right above the `date` command).
 
-As a program runs it may show you output by *printing* it to the interface you see.
-When a program exits, you'll see the prompt again.
+As a program runs it may show you output by *printing* it to the interface you see. When a program exits, you'll see the prompt again.
 
 The `date` program should have exited quickly, and shown you the current date and time.
 
-We've just run our first program via a shell.
+Yay! We've just run our first program via a shell!
 
 In the rest of the tutorial (and for the rest of this lecture) we'll learn about additional programs, and build up the library of functionality we can use at a shell.
 
-A quick word of caution -- never run a command that you don't understand!
-You should be running this tutorial from Cloud Shell, meaning regardless of what you do, your local machine is "safe".
-Even if you remove important operating system files (accidentally or intentionally), as long as you are within Cloud Shell, you are not affecting your local machine.
+### A quick word of caution
+
+Never run a command that you don't understand!
+
+You should be running this tutorial from Cloud Shell, meaning regardless of what you do, your local machine is "safe". Even if you remove important operating system files (accidentally or intentionally), as long as you are within Cloud Shell, you are not affecting your local machine. 
+
 Nevertheless, make it a habit not to run a command or program unless you understand what it will do first.
 
 ## Navigating History
 
 Before we go further, it's useful to point out a number of useful keyboard shortcuts.
 
-When you're at the shell prompt, using the up arrow (or down arrow) moves backwards (or forwards) through your shell *history*.
+When you're at the shell prompt, using the up arrow ↑ (or down arrow ↓) moves backwards (or forwards) through your shell *history*.
 
 Your history is the set of commands you've executed, often across sessions (meaning not just from your current use of the shell, also previous ones).
 
@@ -71,10 +76,12 @@ All of the *output* of commands you've executed will remain above your prompt, s
 ## `Ctrl-c` to interrupt
 
 Finally, before we go much further, you should be aware of the *Ctrl-c* keyboard shortcut.
+
 *Ctrl-c* in a shell will send what is known as an *interrupt* or *signal* -- but what this means is often that if you have either a command you want to "cancel", or a long-running program is running and you want it to stop running, you can hit *Ctrl-c* to do so.
+
 We also by convention use the `^` character to represent the `Ctrl` key, so you will see the above shortcut written `^c`, which means to hold down the `Ctrl` key and hit `c`.
-Try it now by typing `date` at the prompt, but instead of hitting enter, hit `Ctrl-c`.
-You should see that your command was not run.
+
+Try it now by typing `date` at the prompt, but instead of hitting enter, hit `Ctrl-c`. You should see that your command was not run.
 
 The `sleep` program is a program which does nothing but wait a number of seconds before exiting.
 
@@ -102,8 +109,7 @@ and observe that sure enough the shell tells us the command is not found.
 
 ## bash
 
-You'll notice that in the shell we are using, the line printed for "command not found" is prefixed by *bash* -- this is the name of the shell we are using!
-There are other shells you may encounter (or choose to use), each of which are slightly different from each other, but `bash` is a very common one.
+You'll notice that in the shell we are using, the line printed for "command not found" is prefixed by `bash` -- this is the name of the shell we are using! There are other shells you may encounter (or choose to use), each of which are slightly different from each other, but `bash` is a very common one.
 
 Note that `bash`, the shell, is itself a program!
 
@@ -114,6 +120,7 @@ bash
 ```
 
 Nothing appears to have changed -- but that's because the nested `bash` we have just ran has the same *interface* (appearance and behavior) as the outer shell we started with.
+
 In an informal sense which we'll make more precise later, the "inner" bash we've just run now is the program which is receiving what we type on the keyboard, and which will show us output when we hit enter within it.
 Try running one of the commands we've run previously, which now runs within the inner bash.
 
@@ -124,7 +131,8 @@ exit
 ```
 
 If you run it once, you'll exit the nested `bash` we ran, and be back at a similar looking prompt which now is our original "outer" shell.
-If you run it a second time, you'll exit the outer shell Google Cloud Shell opened for you, and thereby close the tutorial.
+
+**Hold up!** If you run it a second time, you'll exit the outer shell Google Cloud Shell opened for you, and thereby close the tutorial. If this happens, just click the link you used to launch the tutorial.
 
 ## Passing Command Line Arguments
 
@@ -157,7 +165,7 @@ We've just used the `echo` program to echo a line of text.
 
 If we want to learn more about what the `echo` program does, like perhaps whether it takes any additional arguments, we can use... another program!
 
-The `man` program, which stands for *manual* is an interactive help program which can tell us about other programs and their usage notes.
+The `man` program, which is short for *manual*, is an interactive help program which can tell us about other programs and their usage notes.
 
 It takes an argument -- the name of a program you wish to learn about.
 
@@ -167,7 +175,15 @@ Run:
 man echo
 ```
 
-and observe you see a page (or multiple pages) of output telling you how to use `echo`. You can hit `q` to exit what you see in `man`.
+and observe you see a page (or multiple pages) of output telling you how to use `echo`. To scroll down, hit `enter`. You can hit `q` to exit what you see in `man`.
+
+We can see that `man echo` has told us that using `-e` will enable interpretation of backslash escapes. Let's try:
+
+```sh
+echo -e "first\nsecond"
+```
+
+Note that we have to use quotes around the string, or `\n` won't be interpretted correctly (we could also do `echo -e first\\nsecond`).
 
 ## Types of Command Line Arguments
 
@@ -178,13 +194,29 @@ Let's see examples of each by looking at another program, one we're quite famili
 
 `python3` is a program which, unsurprisingly, runs Python code.
 
-With no arguments, it opens the REPL:
+With no arguments, it opens the REPL<sup>1</sup>:
 
 ```sh
 python3
 ```
 
-We can use all of the language features we've learned from the REPL.
+And you should see something like: 
+
+```pycon
+Python 3.9.2 (default, Feb 28 2021, 17:03:44)
+[GCC 10.2.1 20210110] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+>>>
+```
+
+We can use all of the language features we've learned from the REPL. It's a simpler version of a Jupyter notebook.
+
+Let's exit out of the Python REPL, either by typing `exit()`, or `Ctrl+d`.
+
+You should be back at the `$` prompt now.
+
+_<sup>1</sup> REPL stands for [read-eval-print-loop](https://en.wikipedia.org/wiki/Read%E2%80%93eval%E2%80%93print_loop). It just means it's an interactive environment for a programming language. Not all programming languages have REPLs._
+
 
 ### Positional arguments
 
@@ -216,7 +248,7 @@ What this is telling us is that we can write:
 ```sh
 python3 -c 'print("Hello from Python")'
 ```
-where we've given `python3` 2 additional arguments -- one, `-c`, and then an additional argument (which `-c` "consumes") containing a piece of Python code to run *instead* of opening the REPL.
+where we've given `python3` two additional arguments -- one, `-c`, and then an additional argument (which `-c` "consumes") containing a piece of Python code to run *instead* of opening the REPL.
 
 You'll notice that we've placed the last command line output inside single quotes -- the reason we do so is because we wish to pass the entire contents of the quotes as one single argument to `python3`.
 Remember -- shells split a command line each time they see a space.
@@ -279,6 +311,8 @@ Try it:
 pwd
 ```
 
+(`pwd` is short for "print working directory".)
+
 A more interesting example of a program which changes behavior depending on the working directory is `ls`.
 
 `ls` is a program which *lists* the contents of a directory.
@@ -289,7 +323,7 @@ Try running it:
 ls
 ```
 
-We can *change* which directory we are in using `cd`:
+We can *change* which directory we are in using `cd` ("change directory"):
 
 ```sh
 cd /tmp
@@ -402,6 +436,14 @@ But it is most often used simply to show a single file.
 You'll find programs called `head` and `tail` useful to look at as well -- they'll show you lines from the beginning of a file or end of it respectively.
 Try using them to pull off lines from our book.
 
+```sh
+head alice/alice.txt
+```
+
+```sh
+tail alice/alice.txt
+```
+
 Sometimes we want to copy, move or delete a file.
 
 The `cp` program will make a full duplicate of a file:
@@ -432,6 +474,8 @@ will *remove* an empty directory, deleting it.
 ## `grep` and Regular Expressions
 
 The `grep` program is extremely versatile as a way of *finding* things in files.
+
+[`grep`](https://en.wikipedia.org/wiki/Grep) is an acronym for "global regular expression print" which is shortened from "globally search for a regular expression and print matching lines".
 
 Alongside *regular expressions*, which are a generic tool we'll use from Python as well, we can easily write concise expressions that allow us to find substrings of interest from files and directories.
 
@@ -526,6 +570,8 @@ Replacing the `\+` with a `*` will match 0 or more instances of the character.
 
 As a quick exercise, see if you can use repetition to match lines containing the word `Alice` *twice* on the same line.
 
+<!-- grep "Alice.*Alice" alice.txt -->
+
 ### Explicit Lists of Characters
 
 We can give an explicit list of characters to match using square brackets (`[]`).
@@ -601,7 +647,7 @@ Try running:
 less alice/alice.txt
 ```
 
-and note you can now use keys like the arrow keys to move around the file and read it at your leisure.
+and note you can now use keys like the arrow keys (`↑`,`↓`) to move around the file and read it at your leisure.
 Hit `q` to exit `less`.
 
 ### `nano` and `vim`
@@ -672,7 +718,7 @@ Here's a unified list you might use to continue investigating them and others:
 
 ## Additional Resources
 
-The [extra learning resources document](https://docs.google.com/document/d/1XwMHRRP3Wwy8hLSGRYKVjqpQ20dMVhGLobRIqYG-goo/) which is linked in the syllabus contains a link to [MIT's "The Missing Semester of Your CS Education"](https://missing.csail.mit.edu/).
+You might find [MIT's "The Missing Semester of Your CS Education"](https://missing.csail.mit.edu/) helpful.
 
 You may find its page on [the shell](https://missing.csail.mit.edu/2020/course-shell/) to be helpful for a second perspective.
 It also has a video which treats some of the material we've covered today.
