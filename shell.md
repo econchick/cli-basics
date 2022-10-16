@@ -313,6 +313,12 @@ pwd
 
 (`pwd` is short for "print working directory".)
 
+For me, this looks like:
+
+```sh
+/home/lr3086/cloudshell_open/cli-basics
+```
+
 A more interesting example of a program which changes behavior depending on the working directory is `ls`.
 
 `ls` is a program which *lists* the contents of a directory.
@@ -321,6 +327,12 @@ Try running it:
 
 ```sh
 ls
+```
+
+You should see something like:
+
+```sh
+alice  hello.py  README.md  shell.md
 ```
 
 We can *change* which directory we are in using `cd` ("change directory"):
@@ -339,9 +351,17 @@ If you were using a machine on a daily basis, you'd put most of your documents, 
 
 We can change back to our previous working directory above by giving `cd` an argument.
 
-Run `cd` with the output you got in your original `pwd` command to put us back in the directory we started in when beginning this tutorial.
+Run `cd` with the output you got in your original `pwd` command to put us back in the directory we started in when beginning this tutorial. For me, I would run:
 
-Confirm that you get the same results as before when running `ls`.
+```sh
+cd /home/lr3086/cloudshell_open/cli-basics
+```
+
+Confirm that you get the same results as before when running `ls`:
+
+```sh
+alice  hello.py  README.md  shell.md
+```
 
 ### Relative and Absolute Paths
 
